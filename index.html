@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti"></script>
+    <title>Flor para Suzett</title>
+</head>
+<body>
+    <audio id="background-music" loop autoplay>
+        <source src="musica/Mickey Mouse.mp4" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <header>
+        <h1>Para mi amiga Suzett, ¡por favor ya deja los doramas!</h1>
+    </header>
+    <main>
+        <div class="flower" onclick="flowerClicked()">
+            <img src="img/1.jpg" alt="Flor Amarilla" class="flower-image">
+        </div>
+    </main>
+    <footer>
+        <p>¡Ni idea quién es ese de ahí, espero que sea coreano :D!</p>
+        <p>Pero, ey!! hay confeti...! dale click a la imagen </p>
+    </footer>
+
+    <script>
+        function flowerClicked() {
+            const flowerImage = document.querySelector('.flower-image');
+            flowerImage.classList.add('clicked');
+            setTimeout(() => {
+                flowerImage.classList.remove('clicked');
+            }, 300);
+            
+            // Generar confeti
+            for (let i = 0; i < 100; i++) {
+                confetti({
+                    particleCount: 1,
+                    spread: 30,
+                    origin: {
+                        x: Math.random(),
+                        y: Math.random() * 0.6
+                    },
+                    angle: Math.random() * 360,
+                    colors: ['#FF5733', '#28B463', '#3498DB', '#F1C40F', '#E91E63'] // Nuevos colores
+                });
+            }
+
+            // Efecto de explosión
+            document.body.classList.add('explosion');
+            setTimeout(() => {
+                document.body.classList.remove('explosion');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
